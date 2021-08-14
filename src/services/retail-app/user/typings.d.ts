@@ -3,4 +3,12 @@ declare namespace UserAPI {
     username?: string;
     password?: string;
   };
+
+  type CurrentUser = {
+    id?: string;
+    name?: string;
+    avatar?: string;
+    email?: string;
+    role?: string;
+  } | null;
 }
