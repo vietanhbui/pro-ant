@@ -1,6 +1,6 @@
 declare namespace UserAPI {
   type LoginParams = {
-    username?: string;
+    email?: string;
     password?: string;
   };
 
