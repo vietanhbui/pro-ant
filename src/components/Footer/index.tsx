@@ -1,5 +1,6 @@
 import { GithubOutlined } from '@ant-design/icons';
 import { DefaultFooter } from '@ant-design/pro-layout';
+
 export default () => {
   const defaultMessage = 'Produced by Ant Financial Experience Department';
   const currentYear = new Date().getFullYear();

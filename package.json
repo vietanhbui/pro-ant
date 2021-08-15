@@ -54,6 +54,7 @@
     "@ant-design/pro-table": "^2.30.8",
     "@umijs/route-utils": "^1.0.36",
     "antd": "^4.14.0",
+    "binary-extensions": "^2.2.0",
     "classnames": "^2.2.6",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.11",
@@ -63,6 +64,7 @@
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.0.4",
+    "react-idle-timer": "^4.6.4",
     "umi": "^3.5.0",
     "umi-serve": "^1.9.10"
   },

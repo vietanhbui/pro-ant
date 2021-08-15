@@ -4,10 +4,13 @@ import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-const { REACT_APP_ENV } = process.env;
+const { REACT_APP_ENV, IDLE_TIMER } = process.env;
 export default defineConfig({
   hash: true,
   antd: {},
+  define: {
+    IDLE_TIMER: IDLE_TIMER || 1800000,
+  },
   dva: {
     hmr: true,
   },

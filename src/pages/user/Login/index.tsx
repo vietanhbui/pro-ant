@@ -15,7 +15,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     // Moving cursor to the end
-    let currentPasswordRef: any = inputPasswordRef.current;
+    const currentPasswordRef: any = inputPasswordRef.current;
     if (currentPasswordRef) {
       currentPasswordRef.input.selectionStart = currentPasswordRef.input.value?.length;
       currentPasswordRef.input.selectionEnd = currentPasswordRef.input.value?.length;

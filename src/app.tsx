@@ -6,6 +6,7 @@ import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import jwtDecode from 'jwt-decode';
+import IdleTimer from './components/IdleTimer';
 
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
@@ -28,10 +29,9 @@ export async function getInitialState(): Promise<{
     if (token) {
       const currentUser: UserAPI.CurrentUser = jwtDecode(token);
       return { currentUser, settings: {} };
-    } else {
-      history.push(loginPath);
-      return { currentUser: null, settings: {} };
     }
+    history.push(loginPath);
+    return { currentUser: null, settings: {} };
   }
   return { currentUser: null, settings: {} };
 }
@@ -39,7 +39,12 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   return {
-    rightContentRender: () => <RightContent />,
+    rightContentRender: () => (
+      <>
+        <IdleTimer />
+        <RightContent />
+      </>
+    ),
     disableContentMargin: false,
     waterMarkProps: {
       content: initialState?.currentUser?.name,
@@ -68,5 +73,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
+    ...initialState?.settings,
   };
 };
