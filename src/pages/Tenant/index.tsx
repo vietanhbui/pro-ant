@@ -2,6 +2,8 @@ import React from 'react';
 import { Input, Button, Table, Card, Row } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
 import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
+import { useRequest } from 'umi';
+import { test } from '@/services/retail-app/user/api';
 
 const columns: any = [
   {
@@ -11,9 +13,9 @@ const columns: any = [
     sorter: true,
   },
   {
-    title: 'Name',
-    key: 'name',
-    dataIndex: 'name',
+    title: 'Email',
+    key: 'email',
+    dataIndex: 'email',
     sorter: true,
   },
   {
@@ -24,12 +26,9 @@ const columns: any = [
   },
 ];
 
-const dataSource: any = [];
-for (let index = 0; index < 40; index += 1) {
-  dataSource.push({ id: index, name: `Name ${index}`, status: 'Active' });
-}
-
 const Tenant: React.FC = () => {
+  const { data, loading } = useRequest(test);
+
   return (
     <PageContainer
       extra={[<Input placeholder="テナント名" key="search" prefix={<SearchOutlined />} />]}
@@ -41,7 +40,12 @@ const Tenant: React.FC = () => {
             New
           </Button>
         </Row>
-        <Table columns={columns} dataSource={dataSource} rowKey={(record) => record.id} />
+        <Table
+          loading={loading}
+          columns={columns}
+          dataSource={data}
+          rowKey={(record) => record.id}
+        />
       </Card>
     </PageContainer>
   );

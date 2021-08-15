@@ -1,6 +1,7 @@
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
-import type { RunTimeLayoutConfig } from 'umi';
+import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
+import type { RequestInterceptor, RequestOptionsInit, ResponseError } from 'umi-request';
 import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
@@ -72,4 +73,33 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     // unAccessible: <div>unAccessible</div>,
     ...initialState?.settings,
   };
+};
+
+const errorHandler = (error: ResponseError) => {
+  console.log('HTTP ERROR', error);
+  throw error;
+};
+
+const requestInterceptors: RequestInterceptor = (url: string, options: RequestOptionsInit) => {
+  const token = localStorage.getItem('token');
+  const baseHeader = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  };
+  if (token) {
+    const authHeader = { Authorization: `Bearer ${token}` };
+    return {
+      url: `${API_URL}${url}`,
+      options: { ...options, interceptors: true, headers: { ...baseHeader, ...authHeader } },
+    };
+  }
+  return {
+    url: `${API_URL}${url}`,
+    options: { ...options, interceptors: true, headers: baseHeader },
+  };
+};
+
+export const request: RequestConfig = {
+  errorHandler,
+  requestInterceptors: [requestInterceptors],
 };

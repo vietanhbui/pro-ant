@@ -4,12 +4,14 @@ import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
-const { REACT_APP_ENV, IDLE_TIMER } = process.env;
+const { REACT_APP_ENV, IDLE_TIMER, PORT, API_URL } = process.env;
 export default defineConfig({
   hash: true,
   antd: {},
   define: {
     IDLE_TIMER: IDLE_TIMER || 1800000,
+    PORT: PORT || 3000,
+    API_URL: API_URL || 'http://localhost:8000',
   },
   dva: {
     hmr: true,

@@ -23,3 +23,5 @@ declare let ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION: 'site' | undefine
 
 declare const REACT_APP_ENV: 'test' | 'dev' | 'pre' | false;
 declare const IDLE_TIMER: 1800000 | undefined;
+declare const PORT: 3000 | undefined;
+declare const API_URL: 'http://localhost:8000' | undefined;

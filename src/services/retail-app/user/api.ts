@@ -25,3 +25,9 @@ export async function login(body: UserAPI.LoginParams, options?: { [key: string]
     ...(options || {}),
   });
 }
+
+export async function test() {
+  return request('/api/users', {
+    method: 'GET',
+  });
+}
