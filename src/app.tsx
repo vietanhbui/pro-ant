@@ -9,6 +9,7 @@ import IdleTimer from './components/IdleTimer';
 import PermissionPage from './pages/403';
 
 const loginPath = '/user/login';
+const permissionDenyPath = '/permission-deny';
 
 /** 获取用户信息比较慢的时候会展示一个 loading */
 export const initialStateConfig = {
@@ -64,7 +65,17 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 };
 
 const errorHandler = (error: ResponseError) => {
-  console.log('HTTP ERROR', error);
+  const statusCode = error?.response?.status;
+  switch (statusCode) {
+    case 401:
+      history.push(loginPath);
+      break;
+    case 403:
+      history.push(permissionDenyPath);
+      break;
+    default:
+      break;
+  }
   throw error;
 };
 

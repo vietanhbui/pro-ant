@@ -27,7 +27,7 @@ export async function login(body: UserAPI.LoginParams, options?: { [key: string]
 }
 
 export async function test() {
-  return request('/api/users', {
+  return request('/api/test/users', {
     method: 'GET',
   });
 }

@@ -46,5 +46,6 @@ export default [
   },
   { name: 'Search Table', icon: 'table', path: '/list', component: './TableList' },
   { path: '/', redirect: '/tenant-management/tenant' },
+  { path: '/permission-deny', component: './403' },
   { component: './404' },
 ];
