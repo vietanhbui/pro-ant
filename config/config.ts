@@ -1,9 +1,8 @@
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
-import proxy from './proxy';
 import routes from './routes';
-const { REACT_APP_ENV, IDLE_TIMER, PORT, API_URL } = process.env;
+const { IDLE_TIMER, PORT, API_URL } = process.env;
 export default defineConfig({
   hash: true,
   antd: {},
@@ -38,7 +37,6 @@ export default defineConfig({
   esbuild: {},
   title: false,
   ignoreMomentLocale: true,
-  proxy: proxy[REACT_APP_ENV || 'dev'],
   manifest: {
     basePath: '/',
   },
