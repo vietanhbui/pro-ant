@@ -4,7 +4,6 @@ import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import type { RequestInterceptor, RequestOptionsInit, ResponseError } from 'umi-request';
 import { history } from 'umi';
 import RightContent from '@/components/RightContent';
-import Footer from '@/components/Footer';
 import jwtDecode from 'jwt-decode';
 import IdleTimer from './components/IdleTimer';
 import PermissionPage from './pages/403';
@@ -46,7 +45,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       </>
     ),
     disableContentMargin: false,
-    footerRender: () => <Footer />,
+    footerRender: undefined,
     onPageChange: () => {
       const { location } = history;
       // 如果没有登录，重定向到 login
