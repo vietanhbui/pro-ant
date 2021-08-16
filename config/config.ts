@@ -9,9 +9,9 @@ export default defineConfig({
   hash: true,
   antd: {},
   define: {
-    IDLE_TIMER: IDLE_TIMER || 1800000,
-    PORT: PORT || 3000,
-    API_URL: API_URL || 'http://localhost:8000',
+    IDLE_TIMER: IDLE_TIMER,
+    PORT: PORT,
+    API_URL: API_URL,
   },
   dva: {
     hmr: true,

@@ -1,5 +1,7 @@
 // @ts-ignore
 /* eslint-disable */
+
+//Xóa
 import { request } from 'umi';
 
 /** 获取当前的用户 GET /api/currentUser */

@@ -5,26 +5,7 @@ import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
 import { useRequest } from 'umi';
 import { test } from '@/services/retail-app/user/api';
 
-const columns: any = [
-  {
-    title: 'Id',
-    key: 'id',
-    dataIndex: 'id',
-    sorter: true,
-  },
-  {
-    title: 'Email',
-    key: 'email',
-    dataIndex: 'email',
-    sorter: true,
-  },
-  {
-    title: 'Status',
-    key: 'status',
-    dataIndex: 'status',
-    sorter: true,
-  },
-];
+const { Column } = Table;
 
 const Tenant: React.FC = () => {
   const { data, loading } = useRequest(test);
@@ -37,15 +18,24 @@ const Tenant: React.FC = () => {
         <Row justify="space-between" align="bottom" className="mb-1">
           <div>Total results: 40</div>
           <Button type="primary" icon={<PlusOutlined />}>
-            New
+            新規登録
           </Button>
         </Row>
-        <Table
-          loading={loading}
-          columns={columns}
-          dataSource={data}
-          rowKey={(record) => record.id}
-        />
+        <Table loading={loading} dataSource={data} rowKey={(record) => record.id} bordered>
+          <Column title="テナントid" dataIndex="id" key="id" />
+          <Column title="5 テナント名" dataIndex="name" key="name" />
+          <Column title="サービス状態" dataIndex="status" key="status" />
+          <Column
+            key="action"
+            width="200"
+            render={() => (
+              <>
+                <Button>詳細</Button>
+                <Button>拠点一覧</Button>
+              </>
+            )}
+          />
+        </Table>
       </Card>
     </PageContainer>
   );
